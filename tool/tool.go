@@ -1,6 +1,7 @@
 package tool
 
 import (
+	"crypto/internal/nistec"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -11,11 +12,11 @@ import (
 
 // CheckError prints the message with the prefix and exits with error code 1
 // if the message is nil, it does nothing.
-func CheckError(text string, err error) {
+func CheckError(text string, err any) {
 	if err == nil {
 		return
 	}
-	_, _ = fmt.Fprintf(os.Stderr, "occurred error: %s, err:%+s\n", text, err)
+	_, _ = fmt.Fprintf(os.Stderr, "occurred error: %s, %+s\n", text, err)
 	os.Exit(1)
 }
 
